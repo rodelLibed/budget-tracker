@@ -1,11 +1,13 @@
+import Navbar from '@/components/Navbar'
 import React from 'react'
 
-const layout = () => {
+const DashboardLayout = ({children}:{children:React.ReactNode}) => {
   return (
-    <div className='text-white'>
-      layout
+    <div className='relative w-full h-screen flex flex-col'>
+      <Navbar />
+       <div className='w-full'>{children}</div>
     </div>
   )
 }
 
-export default layout
+export default DashboardLayout
