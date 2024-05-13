@@ -6,7 +6,7 @@ import { Separator } from '@/components/ui/separator'
 import { currentUser } from '@clerk/nextjs/server'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import React from 'react'
+
 
 const WizardPage = async () => {
   const user = await currentUser()
