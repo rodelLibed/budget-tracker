@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useCallback } from 'react'
 import { TransactionType } from '@/lib/types'
 import { cn } from '@/lib/utils'
 import { useForm } from 'react-hook-form'
@@ -17,16 +17,19 @@ interface Props  {
     trigger: React.ReactNode
     type: TransactionType
 }
-const TransactionDialog = ({trigger, type}:Props) => {
+const CreateTransactionDialog = ({trigger, type}:Props) => {
    const form = useForm<CreateTransactionSchemaType>({
      resolver: zodResolver(CreateTransactionSchema),
       defaultValues: {
-         type: "expense",
+         type,
          date: new Date()
          
       }
-
    })
+    const handleCategoryChange = useCallback((value:string) => {
+       form.setValue("category", value)
+    }, [form])
+
   return (
     <Dialog>
     <DialogTrigger asChild>{trigger}</DialogTrigger>
@@ -74,7 +77,7 @@ const TransactionDialog = ({trigger, type}:Props) => {
                     </FormItem>
                 )}
               />
-
+              Transaction: {form.watch("category")}
               <div className='flex items-center justify-between gap-2'>
                 <FormField 
                   control={form.control}
@@ -83,7 +86,7 @@ const TransactionDialog = ({trigger, type}:Props) => {
                       <FormItem>
                         <FormLabel>Category</FormLabel>
                         <FormControl>
-                          <CategoryPicker type={type} />
+                          <CategoryPicker type={type} onChange={handleCategoryChange} />
                         </FormControl>
                         <FormDescription>
                            Select a category for this transaction
@@ -100,7 +103,7 @@ const TransactionDialog = ({trigger, type}:Props) => {
   )
 }
 
-export default TransactionDialog
+export default CreateTransactionDialog
 
 
 

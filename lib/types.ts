@@ -1,1 +1,1 @@
-export type TransactionType = "income" | "expenses"
+export type TransactionType = "income" | "expense"

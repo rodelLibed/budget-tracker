@@ -47,7 +47,7 @@ const Dashboard = async () => {
                     New Expense 😿
                   </Button>
                  } 
-                 type="expenses"
+                 type="expense"
                  />
                
              </div>
