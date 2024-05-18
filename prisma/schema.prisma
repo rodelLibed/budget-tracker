@@ -53,10 +53,11 @@ model MonthHistory {
 }
 
 model YearHistory {
-  userId String
-  month  Int
-  year   Int
-  income Float
+  userId  String
+  month   Int
+  year    Int
+  income  Float
+  expense Float
 
   @@id([month, year, userId])
 }
