@@ -2,7 +2,7 @@ import { MAX_DAYS_RANGE_DAYS } from "@/lib/constants";
 import { differenceInDays } from "date-fns";
 import { z } from "zod";
 
-export const OverviewSchemaType = z.object({
+export const OverviewQuerySchema = z.object({
       from: z.coerce.date(),
       to: z.coerce.date()
 }).refine((args)=>{
@@ -12,3 +12,4 @@ export const OverviewSchemaType = z.object({
     
     return isValidRange
 })
+

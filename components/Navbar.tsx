@@ -28,6 +28,7 @@ const NavbarDesktop = () => {
              <Logo />
              <div className='flex h-full'>
                   {items.map((item)=> {
+
                     const pathname = usePathname()
                     const isActive = pathname === item.link
                      return (

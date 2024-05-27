@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import { OverviewSchemaType } from "@/schema/overview";
+import { OverviewQuerySchema} from "@/schema/overview";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
@@ -14,7 +14,7 @@ export async function GET(request:Request){
   const from = searchParams.get("from")
   const to = searchParams.get("to")
 
-  const queryParam = OverviewSchemaType.safeParse({ from, to })
+  const queryParam = OverviewQuerySchema.safeParse({ from, to })
 
   if(!queryParam.success){
      return Response.json(queryParam.error.message, {
@@ -22,7 +22,7 @@ export async function GET(request:Request){
      })
   }
 
-  const stats = getBalanceStats(
+  const stats = await getBalanceStats(
      user.id,
      queryParam.data.from,
      queryParam.data.to
