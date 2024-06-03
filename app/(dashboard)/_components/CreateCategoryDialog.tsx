@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 import { CreateCategorySchema, CreateCategorySchemaType } from "@/schema/category"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { CircleOff, Loader2, PlusSquareIcon } from "lucide-react"
-import { useCallback, useState } from "react"
+import React, { useCallback, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import Picker from "@emoji-mart/react"
@@ -22,9 +22,10 @@ import { useTheme } from "next-themes"
 interface Props {
     type: TransactionType
     onSuccessCallback: (category:Category) => void
+    trigger?: React.ReactNode
 }
 
-const CreateCategoryDialog = ({type, onSuccessCallback}:Props) => {
+const CreateCategoryDialog = ({type, onSuccessCallback, trigger}:Props) => {
      const [open, setOpen] = useState(false)
 
      const theme = useTheme()
@@ -74,7 +75,7 @@ const CreateCategoryDialog = ({type, onSuccessCallback}:Props) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
        <DialogTrigger asChild>
-          <Button variant={"ghost"} 
+          { trigger ? trigger : <Button variant={"ghost"} 
              className="flex 
                items-center justify-start
                border-separate rounded-none border-b 
@@ -82,7 +83,7 @@ const CreateCategoryDialog = ({type, onSuccessCallback}:Props) => {
                ">
                  <PlusSquareIcon className="mr-2 h-4 w-4" />
                  Create New
-             </Button>
+             </Button>}
        </DialogTrigger>
        <DialogContent>
            <DialogHeader>
