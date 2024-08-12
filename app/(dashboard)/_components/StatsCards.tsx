@@ -9,11 +9,14 @@ import { TrendingDown, TrendingUp, Wallet } from 'lucide-react'
 import  { useCallback, useMemo } from 'react'
 import CountUp from "react-countup"
 
+
 interface Props {
     from: Date,
     to: Date,
     userSettings: UserSettings
 }
+
+
 const StatsCards = ({from, to, userSettings}:Props) => {
 
     const statsQuery = useQuery<GetBalanceStatsResponseType>({
@@ -22,7 +25,7 @@ const StatsCards = ({from, to, userSettings}:Props) => {
                  then((res) => res.json())
      })
    
-
+   
     const formatter = useMemo(()=>{
         return GetFormatterForCurrency(userSettings.currency)
     }, [userSettings.currency])
@@ -30,6 +33,7 @@ const StatsCards = ({from, to, userSettings}:Props) => {
     const income = statsQuery.data?.income || 0
     const expense = statsQuery.data?.expense || 0
     const balance = income - expense
+    
 
   return (
     <div className='w-full flex flex-wrap md:flex-nowrap gap-2'>  

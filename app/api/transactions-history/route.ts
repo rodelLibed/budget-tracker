@@ -44,7 +44,7 @@ async function getTransactionHistory(userId: string, from: Date, to: Date) {
             userId,
         }
     })
-
+   
     if(!userSettings){
         throw new Error("user settings not found")
     }

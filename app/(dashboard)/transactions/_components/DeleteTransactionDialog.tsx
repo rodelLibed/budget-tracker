@@ -30,6 +30,7 @@ const DeleteTransactionDialog = ({open, setOpen, transactionId}:Props) => {
          })
       }
     })
+
     return (
      <AlertDialog open={open} onOpenChange={setOpen}>
        <AlertDialogContent>

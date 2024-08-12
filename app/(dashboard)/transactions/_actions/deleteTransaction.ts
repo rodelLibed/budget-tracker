@@ -9,7 +9,7 @@ export async function DeleteTransaction(id:string) {
     if(!user){
         redirect("/sign-in")
     }
-
+    
     const transaction = await prisma.transaction.findUnique({
         where: {
             userId: user.id,
@@ -20,6 +20,7 @@ export async function DeleteTransaction(id:string) {
     if(!transaction){
         throw new Error("Bad Request")
     }
+    
 
     await prisma.$transaction([
         //Delete transaction from db
