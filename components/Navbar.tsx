@@ -20,7 +20,7 @@ const Navbar = () => {
 }
 
 const NavbarDesktop = () => {
-    
+   const pathname = usePathname()
   return (
      <div className='hidden border-separate border-b bg-background md:block'>
         <nav className='container flex items-center justify-center px-0'>
@@ -29,7 +29,7 @@ const NavbarDesktop = () => {
              <div className='flex h-full'>
                   {items.map((item)=> {
 
-                    const pathname = usePathname()
+                   
                     const isActive = pathname === item.link
                      return (
                         <div key={item.label} className='relative flex items-center'>
